@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-09-19T19:12:45.340623Z</date>
+  <millis>1758309165340</millis>
+  <nanos>623000</nanos>
+  <sequence>0</sequence>
+  <logger>org.example.Main</logger>
+  <level>INFO</level>
+  <class>org.example.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>App.main is working</message>
+</record>
+</log>

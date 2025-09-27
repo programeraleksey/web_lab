@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation files('./libs/fastcgi-lib.jar')
+
+    implementation platform("com.fasterxml.jackson:jackson-bom:2.20.0") // BOM
+    implementation "com.fasterxml.jackson.core:jackson-databind"
+}
+
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    archiveFileName = 'server.jar'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.named('shadowJar') {
+    archiveFileName.set('server.jar')
+    mergeServiceFiles()
+    // minimize()
+}
